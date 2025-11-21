@@ -30,10 +30,10 @@ const Home = () => {
       <div className="bg-gradient-to-r from-primary-teal to-secondary-green py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Fresh & Healthy Tiffins
+            TINDAM DHA
           </h1>
           <p className="text-xl text-accent-yellow mb-8 max-w-3xl mx-auto">
-            Authentic South Indian meals delivered fresh to your doorstep every day
+           Fresh & Healthy Tiffins
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a 
