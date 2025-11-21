@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the tiffin website */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Ensure full height for the app */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-primary-teal text-white font-bold py-2 px-4 rounded transition duration-300 hover:bg-opacity-90;
+}
+
+.btn-secondary {
+  @apply bg-accent-yellow text-secondary-green font-bold py-2 px-4 rounded transition duration-300 hover:bg-opacity-90;
+}
+
+/* Custom card styles */
+.tiffin-card {
+  @apply bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* WhatsApp button animation */
+.whatsapp-button {
+  transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation link active state */
+.nav-link-active {
+  @apply text-accent-yellow border-b-2 border-accent-yellow;
+}
+
+/* Section headers */
+.section-header {
+  @apply text-3xl md:text-4xl font-bold text-center text-secondary-green mb-4;
+}
+
+/* Section subheaders */
+.section-subheader {
+  @apply text-center text-gray-600 mb-12 max-w-2xl mx-auto;
+}
