@@ -24,9 +24,9 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
-              <img 
-                src="/logo1.png" 
-                alt="TastyTiffins Logo" 
+              <img
+                src="/logo1.png"
+                alt="TastyTiffins Logo"
                 className="h-12 w-auto"
               />
             </Link>
@@ -38,11 +38,10 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`${
-                  location.pathname === link.path
+                className={`${location.pathname === link.path
                     ? 'text-accent-yellow border-b-2 border-accent-yellow'
                     : 'text-white hover:text-accent-yellow'
-                } px-3 py-2 rounded-md text-sm font-medium transition duration-300`}
+                  } px-3 py-2 rounded-md text-sm font-medium transition duration-300 transform hover:scale-105`}
               >
                 {link.name}
               </Link>
@@ -51,7 +50,7 @@ const Navbar = () => {
               href="https://wa.me/1234567890?text=Hi%20I%20want%20to%20order%20tiffin"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-accent-yellow hover:bg-accent-aqua text-secondary-green font-bold py-2 px-4 rounded-full transition duration-300"
+              className="bg-accent-yellow hover:bg-accent-aqua text-secondary-green font-bold py-2 px-4 rounded-full transition duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-95 transform"
             >
               Order Now
             </a>
@@ -81,11 +80,10 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`${
-                  location.pathname === link.path
+                className={`${location.pathname === link.path
                     ? 'text-accent-yellow bg-secondary-green'
                     : 'text-white hover:text-accent-yellow'
-                } block px-3 py-2 rounded-md text-base font-medium`}
+                  } block px-3 py-2 rounded-md text-base font-medium`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
@@ -95,7 +93,7 @@ const Navbar = () => {
               href="https://wa.me/1234567890?text=Hi%20I%20want%20to%20order%20tiffin"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center bg-accent-yellow hover:bg-accent-aqua text-secondary-green font-bold py-2 px-4 rounded mt-2 transition duration-300"
+              className="block w-full text-center bg-accent-yellow hover:bg-accent-aqua text-secondary-green font-bold py-2 px-4 rounded mt-2 transition duration-300 shadow-md hover:shadow-xl active:scale-95 transform"
               onClick={() => setIsMenuOpen(false)}
             >
               Order Now
