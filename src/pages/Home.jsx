@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -115,130 +114,93 @@ const Home = () => {
     "Electronic City"
   ];
 
-  const slideVariants = {
-    enter: (direction) => ({ x: direction > 0 ? 60 : -60, opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (direction) => ({ x: direction > 0 ? -60 : 60, opacity: 0 })
-  };
-
-  // simple direction for exit/enter (positive when next, negative when prev)
-  const getDirection = (targetIndex) => (targetIndex > currentSlide ? 1 : -1);
-
   return (
     <div className="min-h-screen">
       {/* Hero Section with Carousel */}
       <div className="relative h-[650px] overflow-hidden">
-        {/* Banner Images animated with AnimatePresence */}
-        <AnimatePresence initial={false} custom={1}>
-          {bannerImages.map((image, index) =>
-            index === currentSlide ? (
-              <motion.div
-                key={image.id}
-                custom={getDirection(index)}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
-                className="absolute inset-0"
-              >
-                <img
-                  src={image.url}
-                  alt={image.alt}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-                {/* Overlay for text content */}
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <div className={`text-center text-white px-4 ${index === 0 ? 'pt-20' : ''}`}>
-                    {index !== 0 && (
-                      <>
-                        <motion.h1
-                          initial={{ opacity: 0, y: -8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6 }}
-                          className="text-4xl md:text-6xl font-bold mb-6"
-                        >
-                          {index === 1 && 'Authentic South Indian Cuisine'}
-                          {index === 2 && 'Home-Style Cooking Delivered'}
-                          {index === 3 && 'Freshly Prepared Daily'}
-                          {index === 4 && 'Satisfying Tiffins Delivered'}
-                        </motion.h1>
-                        <motion.p
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.08, duration: 0.6 }}
-                          className="text-xl mb-8 max-w-3xl mx-auto"
-                        >
-                          {index === 1 && 'Traditional recipes prepared with love and the finest ingredients'}
-                          {index === 2 && 'Experience the taste of home with our delicious tiffin service'}
-                          {index === 3 && 'Prepared fresh every morning using seasonal produce'}
-                          {index === 4 && 'Healthy, tasty and delivered warm at your doorstep'}
-                        </motion.p>
-                      </>
-                    )}
+        {/* Banner Images */}
+        {bannerImages.map((image, index) =>
+          index === currentSlide ? (
+            <div
+              key={image.id}
+              className="absolute inset-0"
+            >
+              <img
+                src={image.url}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+              />
+              {/* Overlay for text content */}
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className={`text-center text-white px-4 ${index === 0 ? 'pt-20' : ''}`}>
+                  {index !== 0 && (
+                    <>
+                      <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                        {index === 1 && 'Authentic South Indian Cuisine'}
+                        {index === 2 && 'Home-Style Cooking Delivered'}
+                        {index === 3 && 'Freshly Prepared Daily'}
+                        {index === 4 && 'Satisfying Tiffins Delivered'}
+                      </h1>
+                      <p className="text-xl mb-8 max-w-3xl mx-auto">
+                        {index === 1 && 'Traditional recipes prepared with love and the finest ingredients'}
+                        {index === 2 && 'Experience the taste of home with our delicious tiffin service'}
+                        {index === 3 && 'Prepared fresh every morning using seasonal produce'}
+                        {index === 4 && 'Healthy, tasty and delivered warm at your doorstep'}
+                      </p>
+                    </>
+                  )}
 
-                    <div className={`flex flex-col sm:flex-row justify-center gap-4 ${index === 0 ? 'mt-40' : ''}`}>
-                      <motion.a
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.98 }}
-                        href="https://wa.me/1234567890?text=Hi%20I%20want%20to%20order%20tiffin"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-accent-yellow hover:bg-accent-aqua text-secondary-green font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform shadow-lg"
-                        aria-label="Order on WhatsApp"
-                      >
-                        Order on WhatsApp
-                      </motion.a>
+                  <div className={`flex flex-col sm:flex-row justify-center gap-4 ${index === 0 ? 'mt-40' : ''}`}>
+                    <a
+                      href="https://wa.me/1234567890?text=Hi%20I%20want%20to%20order%20tiffin"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-accent-yellow hover:bg-accent-aqua text-secondary-green font-bold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg"
+                      aria-label="Order on WhatsApp"
+                    >
+                      Order on WhatsApp
+                    </a>
 
-                      <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-                        <Link
-                          to="/menu"
-                          className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-secondary-green font-bold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg"
-                        >
-                          View Menu
-                        </Link>
-                      </motion.div>
-                    </div>
+                    <Link
+                      to="/menu"
+                      className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-secondary-green font-bold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg"
+                    >
+                      View Menu
+                    </Link>
                   </div>
                 </div>
-              </motion.div>
-            ) : null
-          )}
-        </AnimatePresence>
+              </div>
+            </div>
+          ) : null
+        )}
 
         {/* Navigation Arrows */}
-        <motion.button
+        <button
           onClick={goToPrevSlide}
-          whileHover={{ scale: 1.04 }}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-3 transition-all duration-300 z-10"
           aria-label="Previous slide"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-        </motion.button>
+        </button>
 
-        <motion.button
+        <button
           onClick={goToNextSlide}
-          whileHover={{ scale: 1.04 }}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-3 transition-all duration-300 z-10"
           aria-label="Next slide"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </motion.button>
+        </button>
 
         {/* Indicators */}
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
           {bannerImages.map((_, index) => (
-            <motion.button
+            <button
               key={index}
               onClick={() => goToSlide(index)}
-              whileHover={{ scale: 1.2 }}
-              transition={{ type: 'spring', stiffness: 300 }}
               className={`rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-white w-8 h-4 rounded-full' : 'bg-white bg-opacity-50 w-4 h-4'}`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -258,12 +220,8 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {tiffinItems.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 18, scale: 0.98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.55, ease: 'easeOut', delay: index * 0.04 }}
                 className="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2"
               >
                 <img
@@ -277,7 +235,7 @@ const Home = () => {
                   <h3 className="text-xl font-bold text-secondary-green mb-2">{item.name}</h3>
                   <p className="text-gray-600">{item.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -292,12 +250,8 @@ const Home = () => {
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, idx) => (
-            <motion.div
+            <div
               key={t.id}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: idx * 0.06 }}
               className="bg-white p-6 rounded-xl shadow-md"
             >
               <div className="flex items-center gap-4 mb-4">
@@ -314,40 +268,20 @@ const Home = () => {
                 {'★'.repeat(t.rating)}{' '}
                 <span className="text-gray-400">{'☆'.repeat(5 - t.rating)}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
-      </div>
-
-      {/* Featured Chefs & Delivery Areas */}
-      
-
-      <div className="py-16 px-4 bg-light">
-        <div className="max-w-7xl mx-auto mb-12">
         </div>
       </div>
 
       {/* Newsletter / Subscribe CTA */}
       <div className="py-16 px-4 bg-secondary-green">
         <div className="max-w-3xl mx-auto text-center text-white">
-          <motion.h2
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl font-bold mb-4"
-          >
+          <h2 className="text-3xl font-bold mb-4">
             Stay Updated
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.06, duration: 0.6 }}
-            className="mb-6 text-white/90"
-          >
+          </h2>
+          <p className="mb-6 text-white/90">
             Subscribe for special offers, menu updates and new tiffin drops.
-          </motion.p>
+          </p>
 
           <form
             onSubmit={(e) => {
@@ -367,14 +301,12 @@ const Home = () => {
               required
               className="px-4 py-3 rounded-full w-full sm:w-auto min-w-[260px] text-gray-800"
             />
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
+            <button
               type="submit"
               className="bg-accent-yellow text-secondary-green font-bold px-6 py-3 rounded-full shadow-lg"
             >
               Subscribe
-            </motion.button>
+            </button>
           </form>
         </div>
       </div>
@@ -393,12 +325,8 @@ const Home = () => {
               { icon: '⏱️', title: 'On Time Delivery', desc: 'Hot and fresh tiffins delivered to your doorstep on time, every day' },
               { icon: '💰', title: 'Affordable', desc: 'Delicious home-style meals at budget-friendly prices' }
             ].map((card, idx) => (
-              <motion.div
+              <div
                 key={idx}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: idx * 0.06 }}
                 className="text-center p-6 bg-white rounded-xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2"
               >
                 <div className="bg-primary-teal w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -406,7 +334,7 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-bold text-secondary-green mb-2">{card.title}</h3>
                 <p className="text-gray-600">{card.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
